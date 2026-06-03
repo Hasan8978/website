@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Payment | APEX Atelier</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box;}
+    body{font-family:'Montserrat',sans-serif;background:#0f0a1a;color:#fff;}
+    :root{--gold:#E8B4B8;}
+    .gold-text{color:var(--gold);}
+    .payment-container{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:120px 20px}
+    .payment-card{background:rgba(26,15,46,0.85);backdrop-filter:blur(16px);border:1px solid rgba(232,180,184,0.35);border-radius:32px;padding:45px 40px;width:100%;max-width:500px}
+    .input-field{width:100%;background:rgba(0,0,0,0.5);border:1px solid rgba(232,180,184,0.3);border-radius:14px;padding:12px 16px;color:#fff;margin-bottom:15px}
+    .card-row{display:flex;gap:15px}
+    .toast-msg{position:fixed;bottom:30px;right:30px;background:var(--gold);color:#1a0f2e;padding:12px 24px;border-radius:50px;z-index:10000}
+  </style>
+</head>
+<body>
+
+<div class="payment-container">
+  <div class="payment-card">
+    <div class="text-center mb-4"><h2>Secure <span class="gold-text">Payment</span></h2><p class="text-white-50">Membership checkout</p></div>
+    
+    <div class="text-center mb-3"><h3 class="gold-text">$299.00</h3><p>Executive Monthly Membership</p></div>
+    
+    <input type="text" class="input-field" placeholder="Cardholder Name">
+    <input type="text" class="input-field" placeholder="Card Number">
+    <div class="card-row"><input type="text" class="input-field" placeholder="MM/YY"><input type="text" class="input-field" placeholder="CVC"></div>
+    
+    <button class="btn-gold w-100 py-3" onclick="processPayment()">Pay $299.00</button>
+    <p class="text-center small text-white-50 mt-3"><i class="bi bi-shield-check"></i> Secure payment. No storage of card details.</p>
+  </div>
+</div>
+
+<script>
+  function showToast(message) {
+    const toast = document.createElement('div');
+    toast.className = 'toast-msg';
+    toast.innerHTML = message;
+    document.body.appendChild(toast);
+    setTimeout(() => toast.remove(), 3000);
+  }
+  
+  function processPayment() {
+    showToast('✓ Payment successful! Welcome to APEX Atelier. Email confirmation sent.');
+    setTimeout(() => { window.location.href = 'dashboard.html'; }, 2000);
+  }
+</script>
+<script src="auto-images.js"></script>
+<script src="fix-buttons.js"></script>
+</body>
+</html>

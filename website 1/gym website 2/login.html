@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Login to your APEX Atelier account">
+  <title>APEX Atelier | Login</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Marcellus&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .login-container{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:120px 20px;background:linear-gradient(135deg,#0f0a1a,#1a0f2e)}
+    .login-card{background:rgba(26,15,46,0.85);backdrop-filter:blur(16px);border:1px solid rgba(232,180,184,0.35);border-radius:32px;padding:45px 40px;width:100%;max-width:450px}
+    .login-card:hover{border-color:var(--gold);box-shadow:0 25px 50px rgba(0,0,0,0.4)}
+    .input-field{width:100%;background:rgba(0,0,0,0.5);border:1px solid rgba(232,180,184,0.3);border-radius:14px;padding:14px 18px;color:#fff;margin-bottom:15px}
+    .input-field:focus{outline:none;border-color:var(--gold);box-shadow:0 0 15px rgba(232,180,184,0.2)}
+    .btn-login{width:100%;background:linear-gradient(135deg,var(--gold),var(--gold-dark));color:#1a0f2e;font-weight:700;padding:14px;border-radius:16px;border:none;transition:0.3s}
+    .btn-login:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(232,180,184,0.3)}
+    @media(max-width:480px){.login-card{padding:35px 25px}}
+  </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-xl fixed-top" id="luxNavbar">
+  <div class="container">
+    <a class="navbar-brand" href="index.html"><span class="gold-text">APEX</span> Atelier</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain"><i class="bi bi-list fs-1 text-white"></i></button>
+    <div class="collapse navbar-collapse" id="navbarMain">
+      <ul class="navbar-nav mx-auto gap-3">
+        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="memberships.html">Memberships</a></li>
+        <li class="nav-item"><a class="nav-link" href="classes.html">Classes</a></li>
+        <li class="nav-item"><a class="nav-link" href="trainers.html">Trainers</a></li>
+        <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
+        <li class="nav-item"><a class="nav-link" href="pricing.html">Pricing</a></li>
+        <li class="nav-item"><a class="nav-link" href="schedule.html">Schedule</a></li>
+        <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+        <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
+        <li class="nav-item"><a class="nav-link active" href="login.html">Login</a></li>
+        <li class="nav-item"><a class="nav-link" href="register.html">Register</a></li>
+        <a href="admin-panel.html" class="btn btn-outline-gold btn-sm">Admin Panel</a>
+        <li class="nav-item"><a class="nav-link" href="booking-system.html">Book a Class</a></li>
+<li class="nav-item"><a class="nav-link" href="event-calendar.html">Calendar</a></li>
+      </ul>
+      <div><a href="login.html" class="btn btn-outline-gold btn-sm">Login</a> <a href="register.html" class="btn btn-gold btn-sm">Join</a></div>
+    </div>
+  </div>
+</nav>
+
+<div class="login-container">
+  <div class="login-card">
+    <div class="text-center mb-4"><div class="logo-icon mx-auto" style="width:70px;height:70px;background:linear-gradient(135deg,rgba(232,180,184,0.15),rgba(0,0,0,0.5));border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 15px;border:1px solid rgba(232,180,184,0.4)"><i class="bi bi-gem fs-1 gold-text"></i></div><h2>Welcome <span class="gold-text">Back</span></h2><p class="text-white-50">Sign in to access your elite fitness journey</p></div>
+    <form action="dashboard.html">
+      <input type="email" class="input-field" placeholder="Email Address" required>
+      <input type="password" class="input-field" placeholder="Password" required>
+      <div class="d-flex justify-content-between align-items-center mb-4"><label class="text-white-50"><input type="checkbox" class="me-1"> Remember me</label><a href="#" class="gold-text">Forgot password?</a></div>
+      <button type="submit" class="btn-login">Sign In</button>
+    </form>
+    <div class="text-center mt-4"><p class="text-white-50">Don't have an account? <a href="register.html" class="gold-text">Create one</a></p><a href="index.html" class="text-white-50 small">← Back to Home</a></div>
+  </div>
+</div>
+
+<footer class="pt-4 pb-4 bg-black border-top text-center"><div class="container"><small>© 2025 APEX ATELIER</small></div></footer>
+
+<div class="font-style-btn" id="fontStyleBtn"><i class="bi bi-type"></i><span>Change Font</span></div>
+<div class="font-dropdown" id="fontDropdown"><div class="font-option" data-font="playfair"><i class="bi bi-text-paragraph"></i><span class="font-preview preview-playfair">Playfair Display</span></div><div class="font-option" data-font="montserrat"><i class="bi bi-text-paragraph"></i><span class="font-preview preview-montserrat">Montserrat</span></div><div class="font-option" data-font="space"><i class="bi bi-text-paragraph"></i><span class="font-preview preview-space">Space Grotesk</span></div><div class="font-option" data-font="cormorant"><i class="bi bi-text-paragraph"></i><span class="font-preview preview-cormorant">Cormorant</span></div><div class="font-option" data-font="dm"><i class="bi bi-text-paragraph"></i><span class="font-preview preview-dm">DM Sans</span></div><div class="font-option" data-font="raleway"><i class="bi bi-text-paragraph"></i><span class="font-preview preview-raleway">Raleway</span></div><div class="font-option" data-font="marcellus"><i class="bi bi-text-paragraph"></i><span class="font-preview preview-marcellus">Marcellus</span></div><div class="font-option" data-font="lato"><i class="bi bi-text-paragraph"></i><span class="font-preview preview-lato">Lato</span></div><div class="font-option" data-font="inter"><i class="bi bi-text-paragraph"></i><span class="font-preview preview-inter">Inter</span></div></div>
+<div class="random-style-btn" id="randomStyleBtn"><i class="bi bi-shuffle"></i><span>Random Style</span></div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<script src="fix-buttons.js"></script>
+<script>
+const fontOptions={playfair:{heading:"'Playfair Display', serif",body:"'Playfair Display', serif"},montserrat:{heading:"'Montserrat', sans-serif",body:"'Montserrat', sans-serif"},space:{heading:"'Space Grotesk', sans-serif",body:"'Space Grotesk', sans-serif"},cormorant:{heading:"'Cormorant Garamond', serif",body:"'Cormorant Garamond', serif"},dm:{heading:"'DM Sans', sans-serif",body:"'DM Sans', sans-serif"},raleway:{heading:"'Raleway', sans-serif",body:"'Raleway', sans-serif"},marcellus:{heading:"'Marcellus', serif",body:"'Marcellus', serif"},lato:{heading:"'Lato', sans-serif",body:"'Lato', sans-serif"},inter:{heading:"'Inter', sans-serif",body:"'Inter', sans-serif"}};
+function applyFont(f){let font=fontOptions[f];document.querySelectorAll('h1,h2,h3,h4,.navbar-brand,.display-1,.display-2,.display-5,.stat-number').forEach(el=>el.style.fontFamily=font.heading);document.body.style.fontFamily=font.body;localStorage.setItem('apex-font',f);let n=document.createElement('div');n.style.cssText=`position:fixed;top:100px;right:30px;background:var(--gold);color:#1a0f2e;padding:12px 24px;border-radius:50px;z-index:10000;font-weight:600;font-size:14px;animation:slideInRight 0.3s ease`;n.innerHTML=`✨ Font changed to ${f.charAt(0).toUpperCase()+f.slice(1)} ✨`;document.body.appendChild(n);setTimeout(()=>n.remove(),2000);}
+document.getElementById('fontStyleBtn')?.addEventListener('click',e=>{e.stopPropagation();document.getElementById('fontDropdown').classList.toggle('show');});
+document.addEventListener('click',e=>{let btn=document.getElementById('fontStyleBtn'),drop=document.getElementById('fontDropdown');if(!btn?.contains(e.target)&&!drop?.contains(e.target))drop?.classList.remove('show');});
+document.querySelectorAll('.font-option').forEach(opt=>{opt.addEventListener('click',()=>{applyFont(opt.getAttribute('data-font'));document.getElementById('fontDropdown').classList.remove('show');});});
+let savedFont=localStorage.getItem('apex-font');if(savedFont&&fontOptions[savedFont])applyFont(savedFont);
+const styleThemes=[{name:'Royal Purple',gold:'#C8A2C8',goldLight:'#E8D0E8',goldDark:'#A882A8',bg:'#1a0f2e',text:'#f0e6ff'},{name:'Emerald Green',gold:'#C8E8C8',goldLight:'#E0F5E0',goldDark:'#A8D0A8',bg:'#0f2e1a',text:'#e6fff0'},{name:'Midnight Blue',gold:'#C8D8E8',goldLight:'#E0ECF5',goldDark:'#A8C0D8',bg:'#0f1a2e',text:'#e6f0ff'},{name:'Rose Gold',gold:'#E8B4B8',goldLight:'#F3D5D6',goldDark:'#C4848A',bg:'#2e1a2e',text:'#ffe6f0'},{name:'Champagne',gold:'#F5E6D3',goldLight:'#FFF5EA',goldDark:'#E0CDB0',bg:'#2e2e1a',text:'#fff0e6'}];
+function applyRandomStyle(){let t=styleThemes[Math.floor(Math.random()*styleThemes.length)];document.documentElement.style.setProperty('--gold',t.gold);document.documentElement.style.setProperty('--gold-light',t.goldLight);document.documentElement.style.setProperty('--gold-dark',t.goldDark);document.body.style.background=`linear-gradient(135deg, ${t.bg} 0%, ${t.bg} 100%)`;document.body.style.color=t.text;let n=document.createElement('div');n.style.cssText=`position:fixed;bottom:100px;left:30px;background:${t.gold};color:${t.bg};padding:12px 24px;border-radius:50px;z-index:10000;font-weight:600;font-size:14px;animation:slideInRight 0.3s ease`;n.innerHTML=`✨ Style changed to ${t.name} ✨`;document.body.appendChild(n);setTimeout(()=>n.remove(),2000);}
+document.getElementById('randomStyleBtn')?.addEventListener('click',applyRandomStyle);
+if(!document.querySelector('#notificationKeyframe')){let s=document.createElement('style');s.id='notificationKeyframe';s.textContent='@keyframes slideInRight{from{transform:translateX(100px);opacity:0}to{transform:translateX(0);opacity:1}}';document.head.appendChild(s);}
+</script>
+<script src="slide-sidebar.js"></script>
+<script src="animations.js"></script>
+<script src="auto-images.js"></script>
+<script src="fix-buttons.js"></script>
+</body>
+</html>

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Booking System | APEX Atelier</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box;}
+    body{font-family:'Montserrat',sans-serif;background:#0f0a1a;color:#fff;}
+    :root{--gold:#E8B4B8;--gold-dark:#C4848A;}
+    .gold-text{color:var(--gold);}
+    .bg-dark-gradient{background:linear-gradient(135deg,#0f0a1a,#1a0f2e);}
+    .glass-card{background:rgba(26,15,46,0.7);backdrop-filter:blur(12px);border:1px solid rgba(232,180,184,0.25);border-radius:24px;transition:0.3s}
+    .glass-card:hover{transform:translateY(-5px);border-color:var(--gold)}
+    .btn-gold{background:linear-gradient(135deg,var(--gold),var(--gold-dark));color:#1a0f2e;font-weight:700;border:none;transition:0.3s;border-radius:40px;padding:10px 24px}
+    .btn-gold:hover{transform:translateY(-2px);box-shadow:0 5px 15px rgba(232,180,184,0.3)}
+    .btn-outline-gold{border:2px solid var(--gold);background:transparent;color:var(--gold);transition:0.3s;border-radius:40px;padding:10px 24px}
+    .btn-outline-gold:hover{background:var(--gold);color:#1a0f2e}
+    .booking-hero{min-height:40vh;background:linear-gradient(135deg,#0f0a1a,#1a0f2e);display:flex;align-items:center;margin-top:76px;text-align:center}
+    .class-card{cursor:pointer;transition:0.3s}
+    .class-card.booked{opacity:0.6;border-color:#ff6b6b;position:relative}
+    .class-card.booked::after{content:'BOOKED';position:absolute;top:10px;right:10px;background:#ff6b6b;color:#fff;padding:4px 10px;border-radius:20px;font-size:0.7rem;font-weight:700}
+    .class-card.available:hover{transform:translateY(-5px);border-color:var(--gold)}
+    .toast-msg{position:fixed;bottom:30px;right:30px;background:var(--gold);color:#1a0f2e;padding:12px 24px;border-radius:50px;z-index:10000;font-weight:600;animation:slideIn 0.3s ease}
+    @keyframes slideIn{from{transform:translateX(100px);opacity:0}to{transform:translateX(0);opacity:1}}
+    @media(max-width:768px){.booking-hero{margin-top:66px}}
+  </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-xl fixed-top" id="luxNavbar" style="background:rgba(15,10,26,0.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(232,180,184,0.3);padding:12px 0">
+  <div class="container">
+    <a class="navbar-brand" href="index.html"><span class="gold-text">APEX</span> Atelier</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain"><i class="bi bi-list fs-1 text-white"></i></button>
+    <div class="collapse navbar-collapse" id="navbarMain">
+      <ul class="navbar-nav mx-auto gap-3">
+        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="memberships.html">Memberships</a></li>
+        <li class="nav-item"><a class="nav-link" href="classes.html">Classes</a></li>
+        <li class="nav-item"><a class="nav-link active" href="booking-system.html">Book a Class</a></li>
+        <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+<li class="nav-item"><a class="nav-link" href="booking-system.html">Book a Class</a></li>
+<li class="nav-item"><a class="nav-link" href="event-calendar.html">Calendar</a></li>
+      </ul>
+      <div><a href="login.html" class="btn btn-outline-gold btn-sm">Login</a> <a href="register.html" class="btn btn-gold btn-sm">Join</a></div>
+    </div>
+  </div>
+</nav>
+
+<section class="booking-hero"><div class="container"><h1 class="display-2 fw-bold">Book Your <span class="gold-text">Class</span></h1><div class="gold-line mx-auto my-3" style="width:80px;height:2px;background:var(--gold)"></div><p class="lead mx-auto" style="max-width:600px">Reserve your spot in our premium classes. Members get priority booking 7 days in advance.</p></div></section>
+
+<section class="py-5 bg-black"><div class="container"><div class="row g-4" id="classesContainer"></div></div></section>
+
+<section class="py-5 bg-dark-gradient"><div class="container"><div class="text-center mb-4"><h2 class="display-5 fw-bold">My <span class="gold-text">Bookings</span></h2></div><div class="glass-card p-4"><div id="myBookings" class="text-center text-white-50">You have no upcoming bookings.</div></div></div></section>
+
+<script>
+  // Class Data
+  const classes = [
+    { id: 1, name: "Metabolic Ignition (HIIT)", coach: "Coach Thorne", duration: "45 min", capacity: 15, time: "6:00 AM", day: "Monday/Wednesday/Friday", spots: 12 },
+    { id: 2, name: "Strength Dynasty", coach: "Coach Cruz", duration: "60 min", capacity: 12, time: "7:30 AM", day: "Monday/Tuesday/Thursday", spots: 8 },
+    { id: 3, name: "Vinyasa Yoga", coach: "Coach Laurent", duration: "60 min", capacity: 12, time: "9:00 AM", day: "Tuesday/Thursday/Saturday", spots: 5 },
+    { id: 4, name: "Boxing Technique", coach: "Coach Reid", duration: "60 min", capacity: 10, time: "5:00 PM", day: "Monday/Wednesday/Friday", spots: 3 },
+    { id: 5, name: "Power Cardio", coach: "Coach Thorne", duration: "45 min", capacity: 20, time: "12:00 PM", day: "Monday-Friday", spots: 14 },
+    { id: 6, name: "Functional Fitness", coach: "Coach Rodriguez", duration: "50 min", capacity: 15, time: "6:30 PM", day: "Tuesday/Thursday", spots: 9 },
+    { id: 7, name: "Sunday Flow Yoga", coach: "Coach Laurent", duration: "75 min", capacity: 12, time: "9:00 AM", day: "Sunday", spots: 6 },
+    { id: 8, name: "Weekend Warrior", coach: "Coach Rodriguez", duration: "60 min", capacity: 15, time: "10:00 AM", day: "Saturday", spots: 11 }
+  ];
+  
+  // Load bookings from localStorage
+  let myBookings = JSON.parse(localStorage.getItem('apex-bookings')) || [];
+  
+  function showToast(message, isError = false) {
+    const toast = document.createElement('div');
+    toast.className = 'toast-msg';
+    toast.style.background = isError ? '#ff6b6b' : 'var(--gold)';
+    toast.style.color = isError ? '#fff' : '#1a0f2e';
+    toast.innerHTML = isError ? `⚠️ ${message}` : `✓ ${message}`;
+    document.body.appendChild(toast);
+    setTimeout(() => toast.remove(), 3000);
+  }
+  
+  function bookClass(classId) {
+    const classData = classes.find(c => c.id === classId);
+    const isAlreadyBooked = myBookings.some(b => b.id === classId);
+    
+    if(isAlreadyBooked) {
+      showToast(`You already booked ${classData.name}!`, true);
+      return;
+    }
+    
+    const booking = {
+      id: classData.id,
+      name: classData.name,
+      coach: classData.coach,
+      duration: classData.duration,
+      time: classData.time,
+      day: classData.day,
+      bookedDate: new Date().toLocaleDateString(),
+      bookingId: Math.random().toString(36).substr(2, 8).toUpperCase()
+    };
+    
+    myBookings.push(booking);
+    localStorage.setItem('apex-bookings', JSON.stringify(myBookings));
+    showToast(`${classData.name} booked successfully! Booking ID: ${booking.bookingId}`);
+    renderClasses();
+    renderMyBookings();
+  }
+  
+  function cancelBooking(bookingId) {
+    const booking = myBookings.find(b => b.bookingId === bookingId);
+    if(confirm(`Cancel ${booking.name}?`)) {
+      myBookings = myBookings.filter(b => b.bookingId !== bookingId);
+      localStorage.setItem('apex-bookings', JSON.stringify(myBookings));
+      showToast(`${booking.name} cancelled`);
+      renderClasses();
+      renderMyBookings();
+    }
+  }
+  
+  function renderClasses() {
+    const container = document.getElementById('classesContainer');
+    container.innerHTML = '';
+    
+    classes.forEach(cls => {
+      const isBooked = myBookings.some(b => b.id === cls.id);
+      const card = document.createElement('div');
+      card.className = `col-md-6 col-lg-3 class-card ${isBooked ? 'booked' : 'available'}`;
+      card.innerHTML = `
+        <div class="glass-card p-4 h-100">
+          <div class="d-flex justify-content-between align-items-start mb-2">
+            <h4 class="h5">${cls.name}</h4>
+            <span class="badge-gold" style="background:rgba(232,180,184,0.2);color:var(--gold)">${cls.duration}</span>
+          </div>
+          <p class="small text-white-50"><i class="bi bi-person-circle gold-text me-1"></i> ${cls.coach}</p>
+          <p class="small text-white-50"><i class="bi bi-clock gold-text me-1"></i> ${cls.time} • ${cls.day}</p>
+          <p class="small text-white-50"><i class="bi bi-people gold-text me-1"></i> ${cls.spots}/${cls.capacity} spots left</p>
+          ${isBooked ? 
+            '<button class="btn btn-outline-gold w-100 mt-3 disabled" disabled>Already Booked</button>' : 
+            `<button class="btn btn-gold w-100 mt-3" onclick="bookClass(${cls.id})">Book Now</button>`
+          }
+        </div>
+      `;
+      container.appendChild(card);
+    });
+  }
+  
+  function renderMyBookings() {
+    const container = document.getElementById('myBookings');
+    if(myBookings.length === 0) {
+      container.innerHTML = '<div class="text-center text-white-50 py-4">📅 You have no upcoming bookings. Book a class above!</div>';
+      return;
+    }
+    
+    container.innerHTML = `
+      <div class="table-responsive">
+        <table class="table text-white">
+          <thead>
+            <tr><th>Class</th><th>Coach</th><th>Time</th><th>Day</th><th>Booking ID</th><th>Action</th></tr>
+          </thead>
+          <tbody>
+            ${myBookings.map(booking => `
+              <tr>
+                <td>${booking.name}</td>
+                <td>${booking.coach}</td>
+                <td>${booking.time}</td>
+                <td>${booking.day}</td>
+                <td><small class="gold-text">${booking.bookingId}</small></td>
+                <td><button class="btn btn-sm btn-outline-gold" onclick="cancelBooking('${booking.bookingId}')">Cancel</button></td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>
+      </div>
+    `;
+  }
+  
+  renderClasses();
+  renderMyBookings();
+</script>
+
+<footer class="pt-5 pb-4 bg-black border-top text-center"><div class="container"><small>© 2025 APEX ATELIER — All rights reserved.</small></div></footer>
+<script src="slide-sidebar.js"></script>
+<script src="animations.js"></script>
+<script src="auto-images.js"></script>
+<script src="fix-buttons.js"></script>
+</body>
+</html>

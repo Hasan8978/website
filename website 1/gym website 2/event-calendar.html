@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Event Calendar | APEX Atelier</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box;}
+    body{font-family:'Montserrat',sans-serif;background:#0f0a1a;color:#fff;}
+    :root{--gold:#E8B4B8;--gold-dark:#C4848A;}
+    .gold-text{color:var(--gold);}
+    .glass-card{background:rgba(26,15,46,0.7);backdrop-filter:blur(12px);border:1px solid rgba(232,180,184,0.25);border-radius:24px;transition:0.3s}
+    .glass-card:hover{transform:translateY(-5px);border-color:var(--gold)}
+    .btn-gold{background:linear-gradient(135deg,var(--gold),var(--gold-dark));color:#1a0f2e;font-weight:700;border:none;transition:0.3s;border-radius:40px;padding:10px 24px}
+    .btn-outline-gold{border:2px solid var(--gold);background:transparent;color:var(--gold);transition:0.3s;border-radius:40px;padding:10px 24px}
+    .calendar-hero{min-height:40vh;background:linear-gradient(135deg,#0f0a1a,#1a0f2e);display:flex;align-items:center;margin-top:76px;text-align:center}
+    .calendar-day{background:rgba(26,15,46,0.5);border-radius:16px;padding:15px;text-align:center;transition:0.3s;cursor:pointer;border:1px solid rgba(232,180,184,0.2)}
+    .calendar-day:hover{transform:translateY(-5px);border-color:var(--gold);background:rgba(232,180,184,0.1)}
+    .calendar-day.today{background:linear-gradient(135deg,rgba(232,180,184,0.2),rgba(0,0,0,0.3));border-color:var(--gold)}
+    .event-card{background:rgba(26,15,46,0.8);border-radius:16px;padding:15px;margin-bottom:15px;border-left:3px solid var(--gold);transition:0.3s}
+    .event-card:hover{transform:translateX(5px);background:rgba(232,180,184,0.1)}
+    .modal-content{background:#1a0f2e;border:1px solid var(--gold);border-radius:24px}
+    .form-control-custom{background:rgba(0,0,0,0.5);border:1px solid rgba(232,180,184,0.3);border-radius:12px;padding:10px 15px;color:#fff}
+    .toast-msg{position:fixed;bottom:30px;right:30px;background:var(--gold);color:#1a0f2e;padding:12px 24px;border-radius:50px;z-index:10000;animation:slideIn 0.3s ease}
+    @keyframes slideIn{from{transform:translateX(100px);opacity:0}to{transform:translateX(0);opacity:1}}
+    @media(max-width:768px){.calendar-hero{margin-top:66px}}
+  </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-xl fixed-top" id="luxNavbar" style="background:rgba(15,10,26,0.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(232,180,184,0.3);padding:12px 0">
+  <div class="container">
+    <a class="navbar-brand" href="index.html"><span class="gold-text">APEX</span> Atelier</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain"><i class="bi bi-list fs-1 text-white"></i></button>
+    <div class="collapse navbar-collapse" id="navbarMain">
+      <ul class="navbar-nav mx-auto gap-3">
+        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="memberships.html">Memberships</a></li>
+        <li class="nav-item"><a class="nav-link" href="classes.html">Classes</a></li>
+        <li class="nav-item"><a class="nav-link active" href="event-calendar.html">Calendar</a></li>
+        <li class="nav-item"><a class="nav-link" href="booking-system.html">Book</a></li>
+        <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+        <li class="nav-item"><a class="nav-link" href="booking-system.html">Book a Class</a></li>
+      </ul>
+      <div><a href="login.html" class="btn btn-outline-gold btn-sm">Login</a> <a href="register.html" class="btn btn-gold btn-sm">Join</a></div>
+    </div>
+  </div>
+</nav>
+
+<section class="calendar-hero"><div class="container"><h1 class="display-2 fw-bold">Event <span class="gold-text">Calendar</span></h1><div class="gold-line mx-auto my-3" style="width:80px;height:2px;background:var(--gold)"></div><p class="lead mx-auto" style="max-width:600px">Stay updated with upcoming events, workshops, and special sessions at APEX Atelier.</p></div></section>
+
+<section class="py-5 bg-black"><div class="container"><div class="row"><div class="col-lg-8"><div class="glass-card p-4"><div class="d-flex justify-content-between align-items-center mb-4"><h3 class="h4">📅 <span id="currentMonthYear"></span></h3><div><button class="btn btn-sm btn-outline-gold" id="prevMonth"><i class="bi bi-chevron-left"></i></button><button class="btn btn-sm btn-outline-gold ms-2" id="nextMonth"><i class="bi bi-chevron-right"></i></button></div></div><div class="row g-2" id="calendarGrid"></div></div></div><div class="col-lg-4"><div class="glass-card p-4"><h3 class="h4 mb-3"><i class="bi bi-calendar-event gold-text"></i> Upcoming Events</h3><div id="upcomingEvents"></div><hr class="my-3"><button class="btn btn-gold w-100" data-bs-toggle="modal" data-bs-target="#addEventModal"><i class="bi bi-plus-circle"></i> Add Event</button></div></div></div></div></section>
+
+<div class="modal fade" id="addEventModal" tabindex="-1"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title gold-text">Add New Event</h5><button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button></div><div class="modal-body"><input type="text" class="form-control-custom w-100 mb-3" id="eventName" placeholder="Event Name"><input type="date" class="form-control-custom w-100 mb-3" id="eventDate"><input type="time" class="form-control-custom w-100 mb-3" id="eventTime"><input type="text" class="form-control-custom w-100 mb-3" id="eventLocation" placeholder="Location"><textarea class="form-control-custom w-100 mb-3" id="eventDesc" rows="2" placeholder="Description"></textarea><select class="form-control-custom w-100 mb-3" id="eventType"><option>Workshop</option><option>Open House</option><option>Special Class</option><option>Member Social</option><option>Guest Speaker</option></select></div><div class="modal-footer"><button class="btn btn-outline-gold" data-bs-dismiss="modal">Cancel</button><button class="btn btn-gold" onclick="addEvent()">Save Event</button></div></div></div></div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  let currentDate = new Date();
+  let events = JSON.parse(localStorage.getItem('apex-events')) || [];
+  
+  const defaultEvents = [
+    { id: 1, name: "New Member Orientation", date: "2025-03-15", time: "10:00 AM", location: "Main Lobby", desc: "Welcome new members", type: "Open House" },
+    { id: 2, name: "HIIT Workshop", date: "2025-03-20", time: "6:00 PM", location: "Studio A", desc: "Advanced HIIT techniques", type: "Workshop" },
+    { id: 3, name: "Nutrition Seminar", date: "2025-03-25", time: "7:00 PM", location: "Wellness Lounge", desc: "Plant-based performance", type: "Guest Speaker" },
+    { id: 4, name: "Member Appreciation Night", date: "2025-03-30", time: "6:30 PM", location: "Rooftop", desc: "Celebrate our members", type: "Member Social" }
+  ];
+  
+  if(events.length === 0) {
+    events = defaultEvents;
+    localStorage.setItem('apex-events', JSON.stringify(events));
+  }
+  
+  function showToast(message) {
+    const toast = document.createElement('div');
+    toast.className = 'toast-msg';
+    toast.innerHTML = `✓ ${message}`;
+    document.body.appendChild(toast);
+    setTimeout(() => toast.remove(), 2000);
+  }
+  
+  function renderCalendar() {
+    const year = currentDate.getFullYear();
+    const month = currentDate.getMonth();
+    const firstDay = new Date(year, month, 1).getDay();
+    const daysInMonth = new Date(year, month + 1, 0).getDate();
+    const today = new Date();
+    const todayStr = `${today.getFullYear()}-${String(today.getMonth()+1).padStart(2,'0')}-${String(today.getDate()).padStart(2,'0')}`;
+    
+    document.getElementById('currentMonthYear').innerHTML = `${currentDate.toLocaleString('default', { month: 'long' })} ${year}`;
+    
+    let calendarHTML = '';
+    for(let i = 0; i < firstDay; i++) calendarHTML += '<div class="col"></div>';
+    for(let d = 1; d <= daysInMonth; d++) {
+      const dateStr = `${year}-${String(month+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+      const dayEvents = events.filter(e => e.date === dateStr);
+      const isToday = dateStr === todayStr;
+      calendarHTML += `
+        <div class="col-md-2 col-3">
+          <div class="calendar-day ${isToday ? 'today' : ''}" onclick="showDayEvents('${dateStr}')">
+            <div class="fw-bold">${d}</div>
+            ${dayEvents.length > 0 ? `<small class="gold-text">${dayEvents.length} event${dayEvents.length > 1 ? 's' : ''}</small>` : ''}
+          </div>
+        </div>
+      `;
+    }
+    document.getElementById('calendarGrid').innerHTML = calendarHTML;
+    renderUpcomingEvents();
+  }
+  
+  function renderUpcomingEvents() {
+    const today = new Date().toISOString().split('T')[0];
+    const upcoming = events.filter(e => e.date >= today).sort((a,b) => a.date.localeCompare(b.date)).slice(0, 5);
+    const container = document.getElementById('upcomingEvents');
+    if(upcoming.length === 0) {
+      container.innerHTML = '<p class="text-white-50 text-center">No upcoming events</p>';
+      return;
+    }
+    container.innerHTML = upcoming.map(event => `
+      <div class="event-card">
+        <div class="d-flex justify-content-between">
+          <h6 class="mb-1 gold-text">${event.name}</h6>
+          <small class="text-white-50">${event.date}</small>
+        </div>
+        <p class="small text-white-50 mb-1"><i class="bi bi-clock"></i> ${event.time} | <i class="bi bi-geo-alt"></i> ${event.location}</p>
+        <p class="small text-white-50 mb-0">${event.desc}</p>
+        <div class="mt-2"><span class="badge-gold" style="font-size:0.6rem">${event.type}</span></div>
+      </div>
+    `).join('');
+  }
+  
+  function showDayEvents(dateStr) {
+    const dayEvents = events.filter(e => e.date === dateStr);
+    if(dayEvents.length === 0) {
+      showToast(`No events on ${dateStr}`);
+      return;
+    }
+    let msg = `Events on ${dateStr}:\n`;
+    dayEvents.forEach(e => msg += `• ${e.name} at ${e.time}\n`);
+    alert(msg);
+  }
+  
+  function addEvent() {
+    const name = document.getElementById('eventName').value;
+    const date = document.getElementById('eventDate').value;
+    const time = document.getElementById('eventTime').value;
+    const location = document.getElementById('eventLocation').value;
+    const desc = document.getElementById('eventDesc').value;
+    const type = document.getElementById('eventType').value;
+    
+    if(!name || !date || !time) {
+      alert('Please fill name, date, and time');
+      return;
+    }
+    
+    const newEvent = {
+      id: Date.now(),
+      name, date, time, location: location || 'APEX Atelier',
+      desc: desc || 'Join us for this special event',
+      type
+    };
+    
+    events.push(newEvent);
+    localStorage.setItem('apex-events', JSON.stringify(events));
+    renderCalendar();
+    document.querySelector('#addEventModal .btn-close').click();
+    document.getElementById('eventName').value = '';
+    document.getElementById('eventDate').value = '';
+    document.getElementById('eventTime').value = '';
+    document.getElementById('eventLocation').value = '';
+    document.getElementById('eventDesc').value = '';
+    showToast('Event added successfully!');
+  }
+  
+  document.getElementById('prevMonth').addEventListener('click', () => {
+    currentDate.setMonth(currentDate.getMonth() - 1);
+    renderCalendar();
+  });
+  document.getElementById('nextMonth').addEventListener('click', () => {
+    currentDate.setMonth(currentDate.getMonth() + 1);
+    renderCalendar();
+  });
+  
+  renderCalendar();
+</script>
+
+<footer class="pt-5 pb-4 bg-black border-top text-center"><div class="container"><small>© 2025 APEX ATELIER — All rights reserved.</small></div></footer>
+<script src="slide-sidebar.js"></script>
+<script src="animations.js"></script>
+<script src="auto-images.js"></script>
+<script src="fix-buttons.js"></script>
+</body>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login | APEX Atelier</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box;}
+    body{font-family:'Montserrat',sans-serif;background:#0f0a1a;color:#fff;}
+    :root{--gold:#E8B4B8;--gold-dark:#C4848A;}
+    .gold-text{color:var(--gold);}
+    .login-container{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:120px 20px;background:linear-gradient(135deg,#0f0a1a,#1a0f2e)}
+    .login-card{background:rgba(26,15,46,0.85);backdrop-filter:blur(16px);border:1px solid rgba(232,180,184,0.35);border-radius:32px;padding:45px 40px;width:100%;max-width:450px}
+    .input-field{width:100%;background:rgba(0,0,0,0.5);border:1px solid rgba(232,180,184,0.3);border-radius:14px;padding:14px 18px;color:#fff;margin-bottom:15px}
+    .btn-login{width:100%;background:linear-gradient(135deg,var(--gold),var(--gold-dark));color:#1a0f2e;font-weight:700;padding:14px;border-radius:16px;border:none;transition:0.3s}
+    .social-btn{background:rgba(255,255,255,0.1);border:1px solid rgba(232,180,184,0.3);border-radius:40px;padding:10px;width:100%;margin-bottom:10px;color:#fff;transition:0.3s}
+    .social-btn:hover{background:rgba(232,180,184,0.2)}
+    .otp-section{display:none}
+    .toast-msg{position:fixed;bottom:30px;right:30px;background:var(--gold);color:#1a0f2e;padding:12px 24px;border-radius:50px;z-index:10000}
+  </style>
+</head>
+<body>
+
+<div class="login-container">
+  <div class="login-card">
+    <div class="text-center mb-4"><div style="width:70px;height:70px;background:linear-gradient(135deg,rgba(232,180,184,0.15),rgba(0,0,0,0.5));border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 15px;border:1px solid rgba(232,180,184,0.4)"><i class="bi bi-gem fs-1 gold-text"></i></div><h2>Welcome <span class="gold-text">Back</span></h2></div>
+    
+    <div id="loginForm">
+      <input type="email" class="input-field" id="loginEmail" placeholder="Email Address" required>
+      <input type="password" class="input-field" id="loginPassword" placeholder="Password" required>
+      <button class="btn-login" onclick="sendOTP()">Login with OTP</button>
+    </div>
+    
+    <div id="otpSection" style="display:none">
+      <p class="text-center small text-white-50">OTP sent to <span id="otpEmailDisplay"></span></p>
+      <input type="text" class="input-field" id="otpCode" placeholder="Enter 6-digit OTP" maxlength="6">
+      <button class="btn-login" onclick="verifyOTP()">Verify & Login</button>
+      <button class="btn btn-outline-gold w-100 mt-2" onclick="resendOTP()">Resend OTP</button>
+    </div>
+    
+    <div class="divider my-3"><hr><span class="px-3 text-white-50">OR</span><hr></div>
+    
+    <button class="social-btn" onclick="socialLogin('google')"><i class="bi bi-google me-2"></i> Continue with Google</button>
+    <button class="social-btn" onclick="socialLogin('facebook')"><i class="bi bi-facebook me-2"></i> Continue with Facebook</button>
+    
+    <div class="text-center mt-4"><a href="register.html" class="gold-text">Create Account</a> | <a href="index.html" class="text-white-50">Home</a></div>
+  </div>
+</div>
+
+<script>
+  let generatedOTP = '';
+  let otpEmail = '';
+  
+  function showToast(message) {
+    const toast = document.createElement('div');
+    toast.className = 'toast-msg';
+    toast.innerHTML = message;
+    document.body.appendChild(toast);
+    setTimeout(() => toast.remove(), 3000);
+  }
+  
+  function sendOTP() {
+    const email = document.getElementById('loginEmail').value;
+    if(!email) { alert('Enter email address'); return; }
+    
+    // Generate random 6-digit OTP
+    generatedOTP = Math.floor(100000 + Math.random() * 900000).toString();
+    otpEmail = email;
+    
+    // Simulate sending OTP (in real app, this would be an API call)
+    console.log(`OTP for ${email}: ${generatedOTP}`);
+    showToast(`📧 Demo OTP sent to ${email} (Demo: ${generatedOTP})`);
+    
+    document.getElementById('otpEmailDisplay').innerText = email;
+    document.getElementById('loginForm').style.display = 'none';
+    document.getElementById('otpSection').style.display = 'block';
+  }
+  
+  function verifyOTP() {
+    const enteredOTP = document.getElementById('otpCode').value;
+    if(enteredOTP === generatedOTP) {
+      // Save user session
+      const user = { email: otpEmail, name: otpEmail.split('@')[0], loggedIn: true, loginTime: new Date().toISOString() };
+      localStorage.setItem('apex-current-user', JSON.stringify(user));
+      localStorage.setItem('apex-logged-in', 'true');
+      showToast('✓ Login successful! Redirecting...');
+      setTimeout(() => { window.location.href = 'dashboard.html'; }, 1500);
+    } else {
+      alert('Invalid OTP. Please try again.');
+    }
+  }
+  
+  function resendOTP() {
+    generatedOTP = Math.floor(100000 + Math.random() * 900000).toString();
+    console.log(`New OTP: ${generatedOTP}`);
+    showToast(`📧 New OTP sent: ${generatedOTP}`);
+  }
+  
+  function socialLogin(provider) {
+    showToast(`✓ Logging in with ${provider}... (Demo)`);
+    const user = { email: `user@${provider}.com`, name: `${provider}_user`, loggedIn: true };
+    localStorage.setItem('apex-current-user', JSON.stringify(user));
+    localStorage.setItem('apex-logged-in', 'true');
+    setTimeout(() => { window.location.href = 'dashboard.html'; }, 1000);
+  }
+</script>
+<script src="auto-images.js"></script>
+<script src="slide-sidebar.js"></script>
+<script src="animations.js"></script>
+<script src="fix-buttons.js"></script>
+</body>
+</html>

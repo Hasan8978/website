@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Your elite member dashboard at APEX Atelier">
+  <title>APEX Atelier | Dashboard</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Marcellus&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .dashboard-wrapper{background:linear-gradient(135deg,#0f0a1a,#1a0f2e);min-height:100vh;padding-top:100px;padding-bottom:60px}
+    .welcome-header{background:linear-gradient(135deg,rgba(232,180,184,0.1),rgba(0,0,0,0.3));border-radius:24px;padding:25px 30px;border:1px solid rgba(232,180,184,0.2)}
+    .avatar{width:60px;height:60px;background:linear-gradient(135deg,var(--gold),var(--gold-dark));border-radius:50%;display:flex;align-items:center;justify-content:center}
+    .avatar i{font-size:28px;color:#1a0f2e}
+    .progress-bar-custom{height:8px;background:rgba(255,255,255,0.1);border-radius:10px;overflow:hidden}
+    .progress-fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold-light));border-radius:10px}
+    .class-item{display:flex;align-items:center;justify-content:space-between;padding:15px 0;border-bottom:1px solid rgba(232,180,184,0.1)}
+    .class-time{background:rgba(232,180,184,0.15);padding:8px 12px;border-radius:12px;text-align:center;min-width:70px}
+    .class-time .day{font-size:0.7rem;color:var(--gold)}
+    .class-time .hour{font-size:0.85rem;font-weight:700}
+    .notification-item{display:flex;gap:15px;padding:15px 0;border-bottom:1px solid rgba(232,180,184,0.08)}
+    .notification-icon{width:40px;height:40px;background:rgba(232,180,184,0.1);border-radius:50%;display:flex;align-items:center;justify-content:center}
+    .notification-icon i{color:var(--gold)}
+    .goal-card{background:rgba(0,0,0,0.3);border-radius:16px;padding:15px;border-left:3px solid var(--gold)}
+    @media(max-width:768px){.dashboard-wrapper{padding-top:80px}.welcome-header{padding:20px}}
+  </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-xl fixed-top" id="luxNavbar">
+  <div class="container">
+    <a class="navbar-brand" href="index.html"><span class="gold-text">APEX</span> Atelier</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain"><i class="bi bi-list fs-1 text-white"></i></button>
+    <div class="collapse navbar-collapse" id="navbarMain">
+      <ul class="navbar-nav mx-auto gap-3">
+        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="memberships.html">Memberships</a></li>
+        <li class="nav-item"><a class="nav-link" href="classes.html">Classes</a></li>
+        <li class="nav-item"><a class="nav-link" href="trainers.html">Trainers</a></li>
+        <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
+        <li class="nav-item"><a class="nav-link" href="pricing.html">Pricing</a></li>
+        <li class="nav-item"><a class="nav-link" href="schedule.html">Schedule</a></li>
+        <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+        <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
+        <li class="nav-item"><a class="nav-link active" href="dashboard.html">Dashboard</a></li>
+        <a href="admin-panel.html" class="btn btn-outline-gold btn-sm">Admin Panel</a>
+        <li class="nav-item"><a class="nav-link" href="booking-system.html">Book a Class</a></li>
+<li class="nav-item"><a class="nav-link" href="event-calendar.html">Calendar</a></li>
+      </ul>
+      <div><a href="login.html" class="btn btn-outline-gold btn-sm">Logout</a></div>
+    </div>
+  </div>
+</nav>
+
+<div class="dashboard-wrapper">
+  <div class="container">
+    <div class="welcome-header mb-4 d-flex flex-wrap align-items-center justify-content-between gap-3">
+      <div class="d-flex align-items-center gap-4"><div class="avatar"><i class="bi bi-person-fill"></i></div><div><h1 class="h3 fw-bold mb-1">Welcome back, <span class="gold-text">Alexander</span></h1><p class="text-white-50 mb-0">Platinum Member since January 2025</p></div></div>
+      <div class="d-flex gap-2"><span class="badge-gold"><i class="bi bi-diamond-fill me-1"></i> Platinum Tier</span><span class="badge-gold" style="background:rgba(232,180,184,0.2);color:var(--gold)"><i class="bi bi-calendar-check me-1"></i> 24/7 Access</span></div>
+    </div>
+
+    <div class="row g-4 mb-4">
+      <div class="col-md-3 col-6"><div class="glass-card p-3 text-center"><i class="bi bi-calendar-week fs-2 gold-text"></i><div class="stat-number">12</div><p class="text-white-50 small mb-0">Classes This Month</p></div></div>
+      <div class="col-md-3 col-6"><div class="glass-card p-3 text-center"><i class="bi bi-trophy fs-2 gold-text"></i><div class="stat-number">87%</div><p class="text-white-50 small mb-0">Goal Completion</p></div></div>
+      <div class="col-md-3 col-6"><div class="glass-card p-3 text-center"><i class="bi bi-fire fs-2 gold-text"></i><div class="stat-number">4,280</div><p class="text-white-50 small mb-0">Calories Burned</p></div></div>
+      <div class="col-md-3 col-6"><div class="glass-card p-3 text-center"><i class="bi bi-clock-history fs-2 gold-text"></i><div class="stat-number">18</div><p class="text-white-50 small mb-0">Hours Trained</p></div></div>
+    </div>
+
+    <div class="row g-4">
+      <div class="col-lg-4"><div class="glass-card p-4 mb-4"><div class="d-flex justify-content-between mb-3"><h3 class="h5"><i class="bi bi-gem gold-text me-2"></i> Membership</h3><a href="memberships.html" class="gold-text small">Upgrade →</a></div><div class="mb-3"><p class="text-white-50 small mb-1">Current Plan</p><h4 class="fw-bold text-white mb-1">Platinum Elite</h4><p class="gold-text small">$499 / month</p></div><div class="progress-bar-custom mb-2"><div class="progress-fill" style="width:75%"></div></div><p class="text-white-50 small mb-0">8 of 10 personal training credits used</p><hr class="my-3 opacity-25"><div class="d-flex justify-content-between"><span><i class="bi bi-calendar-check gold-text me-1"></i> Renewal: Apr 15, 2025</span><span><i class="bi bi-credit-card gold-text me-1"></i> Auto-pay Active</span></div></div>
+      <div class="glass-card p-4"><h3 class="h5 mb-3"><i class="bi bi-graph-up gold-text me-2"></i> Progress Overview</h3><div class="mb-3"><div class="d-flex justify-content-between mb-1"><span>Strength Goal</span><span class="gold-text">65%</span></div><div class="progress-bar-custom"><div class="progress-fill" style="width:65%"></div></div></div><div class="mb-3"><div class="d-flex justify-content-between mb-1"><span>Cardio Endurance</span><span class="gold-text">82%</span></div><div class="progress-bar-custom"><div class="progress-fill" style="width:82%"></div></div></div><div class="mb-3"><div class="d-flex justify-content-between mb-1"><span>Flexibility</span><span class="gold-text">58%</span></div><div class="progress-bar-custom"><div class="progress-fill" style="width:58%"></div></div></div><div><div class="d-flex justify-content-between mb-1"><span>Weight Management</span><span class="gold-text">91%</span></div><div class="progress-bar-custom"><div class="progress-fill" style="width:91%"></div></div></div><a href="#" class="btn btn-outline-gold w-100 mt-4 py-2">View Full Analytics</a></div></div>
+
+      <div class="col-lg-5"><div class="glass-card p-4 h-100"><div class="d-flex justify-content-between mb-3"><h3 class="h5"><i class="bi bi-calendar-week gold-text me-2"></i> Upcoming Classes</h3><a href="schedule.html" class="gold-text small">View All →</a></div><div class="class-item"><div class="d-flex gap-3"><div class="class-time"><div class="day">TODAY</div><div class="hour">6:00 PM</div></div><div><p class="fw-bold mb-0">HIIT Performance</p><p class="small text-white-50 mb-0">Coach Thorne • 45 min</p></div></div><button class="btn btn-sm btn-outline-gold">Check In</button></div><div class="class-item"><div class="d-flex gap-3"><div class="class-time"><div class="day">TOMORROW</div><div class="hour">7:30 AM</div></div><div><p class="fw-bold mb-0">Strength Dynasty</p><p class="small text-white-50 mb-0">Coach Cruz • 60 min</p></div></div><button class="btn btn-sm btn-outline-gold">Details</button></div><div class="class-item"><div class="d-flex gap-3"><div class="class-time"><div class="day">WED</div><div class="hour">12:00 PM</div></div><div><p class="fw-bold mb-0">Boxing Technique</p><p class="small text-white-50 mb-0">Coach Reid • 60 min</p></div></div><button class="btn btn-sm btn-outline-gold">Details</button></div><div class="mt-3 pt-2"><div class="d-flex justify-content-between align-items-center bg-dark p-3 rounded-3"><span><i class="bi bi-plus-circle gold-text me-2"></i> Personal Training Credit</span><span class="gold-text">2 remaining this month</span></div></div></div></div>
+
+      <div class="col-lg-3"><div class="glass-card p-4 mb-4"><h3 class="h5 mb-3"><i class="bi bi-bell-fill gold-text me-2"></i> Notifications <span class="badge-gold ms-2">3 New</span></h3><div class="notification-item"><div class="notification-icon"><i class="bi bi-calendar-check"></i></div><div><p class="small fw-bold mb-0">Class Reminder</p><p class="small text-white-50">Your HIIT class starts in 2 hours</p></div></div><div class="notification-item"><div class="notification-icon"><i class="bi bi-trophy"></i></div><div><p class="small fw-bold mb-0">Achievement Unlocked</p><p class="small text-white-50">10 classes completed this month!</p></div></div><div class="notification-item"><div class="notification-icon"><i class="bi bi-chat-dots"></i></div><div><p class="small fw-bold mb-0">Coach Message</p><p class="small text-white-50">Coach Cruz sent you a training tip</p></div></div><a href="#" class="btn btn-outline-gold w-100 mt-3 py-2">View All</a></div>
+      <div class="glass-card p-4"><div class="d-flex justify-content-between mb-3"><h3 class="h5"><i class="bi bi-bullseye gold-text me-2"></i> Weekly Goals</h3><a href="#" class="gold-text small">Edit</a></div><div class="goal-card mb-3"><div class="d-flex justify-content-between"><span>Complete 5 classes</span><span class="gold-text">4/5</span></div><div class="progress-bar-custom mt-2"><div class="progress-fill" style="width:80%"></div></div></div><div class="goal-card mb-3"><div class="d-flex justify-content-between"><span>Burn 3,500 calories</span><span class="gold-text">2,850/3,500</span></div><div class="progress-bar-custom mt-2"><div class="progress-fill" style="width:81%"></div></div></div><div class="goal-card mb-3"><div class="d-flex justify-content-between"><span>Strength sessions</span><span class="gold-text">2/3</span></div><div class="progress-bar-custom mt-2"><div class="progress-fill" style="width:66%"></div></div></div><button class="btn btn-gold w-100 mt-4 py-2"><i class="bi bi-plus-circle me-2"></i> Set New Goal</button></div></div>
+    </div>
+
+    <div class="row mt-4"><div class="col-12"><div class="glass-card p-4"><h3 class="h5 mb-3"><i class="bi bi-activity gold-text me-2"></i> Recent Activity</h3><div class="table-responsive"><table class="table table-dark table-borderless"><thead><tr><th>Date</th><th>Activity</th><th>Duration</th><th>Calories</th><th>Coach</th></tr></thead><tbody><tr><td>Mar 12, 2025</td><td>HIIT Performance</td><td>45 min</td><td>520</td><td>Coach Thorne</td></tr><tr><td>Mar 11, 2025</td><td>Strength Dynasty</td><td>60 min</td><td>480</td><td>Coach Cruz</td></tr><tr><td>Mar 10, 2025</td><td>Vinyasa Yoga</td><td>60 min</td><td>280</td><td>Coach Laurent</td></tr><tr><td>Mar 9, 2025</td><td>Boxing Technique</td><td>60 min</td><td>610</td><td>Coach Reid</td></tr></tbody></table></div><a href="#" class="btn btn-outline-gold w-100 py-2 mt-2">View Full History</a></div></div></div>
+  </div>
+</div>
+
+<footer class="pt-5 pb-4 bg-black border-top text-center" style="border-color:var(--gold)!important"><div class="container"><div class="row"><div class="col-md-4"><a class="navbar-brand" href="index.html"><span class="gold-text">APEX</span> Atelier</a><p class="text-white-50 small mt-2">Elite fitness & wellness sanctuary.</p></div><div class="col-md-4"><h5>Quick Links</h5><ul class="list-unstyled"><li><a href="about.html" class="footer-link">About</a></li><li><a href="memberships.html" class="footer-link">Memberships</a></li><li><a href="dashboard.html" class="footer-link">Dashboard</a></li></ul></div><div class="col-md-4"><h5>Connect</h5><div class="social-icons"><a href="#" class="text-gold me-2"><i class="bi bi-instagram"></i></a><a href="#" class="text-gold me-2"><i class="bi bi-facebook"></i></a><a href="#" class="text-gold"><i class="bi bi-twitter"></i></a></div></div></div><hr class="my-3" style="background:var(--gold);opacity:0.3"><small>© 2025 APEX ATELIER — All rights reserved.</small></div></footer>
+
+<div class="font-style-btn" id="fontStyleBtn"><i class="bi bi-type"></i><span>Change Font</span></div>
+<div class="font-dropdown" id="fontDropdown"><div class="font-option" data-font="playfair"><i class="bi bi-text-paragraph"></i><span class="font-preview preview-playfair">Playfair Display</span></div><div class="font-option" data-font="montserrat"><i class="bi bi-text-paragraph"></i><span class="font-preview preview-montserrat">Montserrat</span></div><div class="font-option" data-font="space"><i class="bi bi-text-paragraph"></i><span class="font-preview preview-space">Space Grotesk</span></div><div class="font-option" data-font="cormorant"><i class="bi bi-text-paragraph"></i><span class="font-preview preview-cormorant">Cormorant</span></div><div class="font-option" data-font="dm"><i class="bi bi-text-paragraph"></i><span class="font-preview preview-dm">DM Sans</span></div><div class="font-option" data-font="raleway"><i class="bi bi-text-paragraph"></i><span class="font-preview preview-raleway">Raleway</span></div><div class="font-option" data-font="marcellus"><i class="bi bi-text-paragraph"></i><span class="font-preview preview-marcellus">Marcellus</span></div><div class="font-option" data-font="lato"><i class="bi bi-text-paragraph"></i><span class="font-preview preview-lato">Lato</span></div><div class="font-option" data-font="inter"><i class="bi bi-text-paragraph"></i><span class="font-preview preview-inter">Inter</span></div></div>
+<div class="random-style-btn" id="randomStyleBtn"><i class="bi bi-shuffle"></i><span>Random Style</span></div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<script src="fix-buttons.js"></script>
+<script>
+const fontOptions={playfair:{heading:"'Playfair Display', serif",body:"'Playfair Display', serif"},montserrat:{heading:"'Montserrat', sans-serif",body:"'Montserrat', sans-serif"},space:{heading:"'Space Grotesk', sans-serif",body:"'Space Grotesk', sans-serif"},cormorant:{heading:"'Cormorant Garamond', serif",body:"'Cormorant Garamond', serif"},dm:{heading:"'DM Sans', sans-serif",body:"'DM Sans', sans-serif"},raleway:{heading:"'Raleway', sans-serif",body:"'Raleway', sans-serif"},marcellus:{heading:"'Marcellus', serif",body:"'Marcellus', serif"},lato:{heading:"'Lato', sans-serif",body:"'Lato', sans-serif"},inter:{heading:"'Inter', sans-serif",body:"'Inter', sans-serif"}};
+function applyFont(f){let font=fontOptions[f];document.querySelectorAll('h1,h2,h3,h4,.navbar-brand,.display-1,.display-2,.display-5,.stat-number').forEach(el=>el.style.fontFamily=font.heading);document.body.style.fontFamily=font.body;localStorage.setItem('apex-font',f);let n=document.createElement('div');n.style.cssText=`position:fixed;top:100px;right:30px;background:var(--gold);color:#1a0f2e;padding:12px 24px;border-radius:50px;z-index:10000;font-weight:600;font-size:14px;animation:slideInRight 0.3s ease`;n.innerHTML=`✨ Font changed to ${f.charAt(0).toUpperCase()+f.slice(1)} ✨`;document.body.appendChild(n);setTimeout(()=>n.remove(),2000);}
+document.getElementById('fontStyleBtn')?.addEventListener('click',e=>{e.stopPropagation();document.getElementById('fontDropdown').classList.toggle('show');});
+document.addEventListener('click',e=>{let btn=document.getElementById('fontStyleBtn'),drop=document.getElementById('fontDropdown');if(!btn?.contains(e.target)&&!drop?.contains(e.target))drop?.classList.remove('show');});
+document.querySelectorAll('.font-option').forEach(opt=>{opt.addEventListener('click',()=>{applyFont(opt.getAttribute('data-font'));document.getElementById('fontDropdown').classList.remove('show');});});
+let savedFont=localStorage.getItem('apex-font');if(savedFont&&fontOptions[savedFont])applyFont(savedFont);
+const styleThemes=[{name:'Royal Purple',gold:'#C8A2C8',goldLight:'#E8D0E8',goldDark:'#A882A8',bg:'#1a0f2e',text:'#f0e6ff'},{name:'Emerald Green',gold:'#C8E8C8',goldLight:'#E0F5E0',goldDark:'#A8D0A8',bg:'#0f2e1a',text:'#e6fff0'},{name:'Midnight Blue',gold:'#C8D8E8',goldLight:'#E0ECF5',goldDark:'#A8C0D8',bg:'#0f1a2e',text:'#e6f0ff'},{name:'Rose Gold',gold:'#E8B4B8',goldLight:'#F3D5D6',goldDark:'#C4848A',bg:'#2e1a2e',text:'#ffe6f0'},{name:'Champagne',gold:'#F5E6D3',goldLight:'#FFF5EA',goldDark:'#E0CDB0',bg:'#2e2e1a',text:'#fff0e6'}];
+function applyRandomStyle(){let t=styleThemes[Math.floor(Math.random()*styleThemes.length)];document.documentElement.style.setProperty('--gold',t.gold);document.documentElement.style.setProperty('--gold-light',t.goldLight);document.documentElement.style.setProperty('--gold-dark',t.goldDark);document.body.style.background=`linear-gradient(135deg, ${t.bg} 0%, ${t.bg} 100%)`;document.body.style.color=t.text;let n=document.createElement('div');n.style.cssText=`position:fixed;bottom:100px;left:30px;background:${t.gold};color:${t.bg};padding:12px 24px;border-radius:50px;z-index:10000;font-weight:600;font-size:14px;animation:slideInRight 0.3s ease`;n.innerHTML=`✨ Style changed to ${t.name} ✨`;document.body.appendChild(n);setTimeout(()=>n.remove(),2000);}
+document.getElementById('randomStyleBtn')?.addEventListener('click',applyRandomStyle);
+if(!document.querySelector('#notificationKeyframe')){let s=document.createElement('style');s.id='notificationKeyframe';s.textContent='@keyframes slideInRight{from{transform:translateX(100px);opacity:0}to{transform:translateX(0);opacity:1}}';document.head.appendChild(s);}
+</script>
+<script src="slide-sidebar.js"></script>
+<script src="animations.js"></script>
+<script src="auto-images.js"></script>
+<script src="fix-buttons.js"></script>
+</body>
+</html>

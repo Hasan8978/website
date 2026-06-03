@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Explore premium fitness classes at APEX Atelier - Yoga, HIIT, Strength, Boxing, and more">
+  <title>APEX Atelier | Elite Classes</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Marcellus&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .classes-hero{min-height:50vh;background:linear-gradient(135deg,#0f0a1a,#1a0f2e);display:flex;align-items:center;margin-top:76px;text-align:center;position:relative}
+    .class-card{background:rgba(26,15,46,0.85);backdrop-filter:blur(12px);border:1px solid rgba(232,180,184,0.25);border-radius:24px;overflow:hidden;transition:0.4s;height:100%}
+    .class-card:hover{transform:translateY(-10px);border-color:var(--gold);box-shadow:0 25px 40px rgba(0,0,0,0.4)}
+    .class-img{height:220px;width:100%;object-fit:cover}
+    .difficulty{display:inline-block;padding:4px 12px;border-radius:20px;font-size:0.7rem;font-weight:600}
+    .beginner{background:rgba(76,175,80,0.2);color:#a5d6a7;border:1px solid #81c784}
+    .intermediate{background:rgba(232,180,184,0.2);color:var(--gold);border:1px solid var(--gold)}
+    .advanced{background:rgba(244,67,54,0.2);color:#ef9a9a;border:1px solid #ef5350}
+    @media(max-width:768px){.classes-hero{margin-top:66px}}
+  </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-xl fixed-top" id="luxNavbar">
+  <div class="container">
+    <a class="navbar-brand" href="index.html"><span class="gold-text">APEX</span> Atelier</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain"><i class="bi bi-list fs-1 text-white"></i></button>
+    <div class="collapse navbar-collapse" id="navbarMain">
+      <ul class="navbar-nav mx-auto gap-3">
+        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="memberships.html">Memberships</a></li>
+        <li class="nav-item"><a class="nav-link active" href="classes.html">Classes</a></li>
+        <li class="nav-item"><a class="nav-link" href="trainers.html">Trainers</a></li>
+        <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
+        <li class="nav-item"><a class="nav-link" href="pricing.html">Pricing</a></li>
+        <li class="nav-item"><a class="nav-link" href="schedule.html">Schedule</a></li>
+        <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+        <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
+        <a href="admin-panel.html" class="btn btn-outline-gold btn-sm">Admin Panel</a>
+        <li class="nav-item"><a class="nav-link" href="booking-system.html">Book a Class</a></li>
+<li class="nav-item"><a class="nav-link" href="event-calendar.html">Calendar</a></li>
+      </ul>
+      <div><a href="login.html" class="btn btn-outline-gold btn-sm">Login</a> <a href="register.html" class="btn btn-gold btn-sm">Join</a></div>
+    </div>
+  </div>
+</nav>
+
+<section class="classes-hero"><div class="container"><span class="badge-gold mb-3 d-inline-block">Signature Sessions</span><h1 class="display-2 fw-bold">Elite <span class="gold-text">Classes</span></h1><div class="gold-line mx-auto my-4"></div><p class="lead mx-auto" style="max-width:700px">World-class instruction in a sanctuary of excellence. Each class is curated by master trainers to elevate your performance and transform your body.</p></div></section>
+
+<section class="py-5 bg-black"><div class="container"><div class="row g-4"><div class="col-lg-4 col-md-6"><div class="class-card"><img src="https://placehold.co/600x400/1a0f2e/E8B4B8?text=YOGA" class="class-img"><div class="p-4"><div class="d-flex justify-content-between"><h3 class="h4">Yoga</h3><span class="difficulty intermediate">Intermediate</span></div><div class="d-flex gap-3 my-2"><span><i class="bi bi-clock gold-text"></i> 60 min</span><span><i class="bi bi-people gold-text"></i> Max 12</span></div><p>Experience the fusion of ancient wisdom and modern luxury. This premium yoga session combines vinyasa flow with breathwork, meditation, and mobility training. Perfect for improving flexibility, reducing stress, and cultivating inner strength. Our heated studios and aromatherapy enhance the experience.</p><a href="schedule.html" class="btn btn-outline-gold w-100 mt-3">Book This Class →</a></div></div></div><div class="col-lg-4 col-md-6"><div class="class-card"><img src="https://placehold.co/600x400/1a0f2e/E8B4B8?text=HIIT" class="class-img"><div class="p-4"><div class="d-flex justify-content-between"><h3 class="h4">HIIT</h3><span class="difficulty advanced">Advanced</span></div><div class="d-flex gap-3 my-2"><span><i class="bi bi-clock gold-text"></i> 45 min</span><span><i class="bi bi-people gold-text"></i> Max 15</span></div><p>Maximum intensity. Maximum results. This high-intensity interval training pushes your limits with scientifically structured work-to-rest ratios. Build explosive power, accelerate metabolism, and achieve peak conditioning. Includes heart rate monitoring and performance tracking.</p><a href="schedule.html" class="btn btn-outline-gold w-100 mt-3">Book This Class →</a></div></div></div><div class="col-lg-4 col-md-6"><div class="class-card"><img src="https://placehold.co/600x400/1a0f2e/E8B4B8?text=STRENGTH" class="class-img"><div class="p-4"><div class="d-flex justify-content-between"><h3 class="h4">Strength Training</h3><span class="difficulty intermediate">Intermediate</span></div><div class="d-flex gap-3 my-2"><span><i class="bi bi-clock gold-text"></i> 55 min</span><span><i class="bi bi-people gold-text"></i> Max 12</span></div><p>Build functional power in our premium strength lab. Using Eleiko barbells, plate-loaded machines, and functional equipment, this class focuses on compound movements and progressive overload. Perfect for muscle development, bone density, and metabolic health.</p><a href="schedule.html" class="btn btn-outline-gold w-100 mt-3">Book This Class →</a></div></div></div><div class="col-lg-4 col-md-6"><div class="class-card"><img src="https://placehold.co/600x400/1a0f2e/E8B4B8?text=BOXING" class="class-img"><div class="p-4"><div class="d-flex justify-content-between"><h3 class="h4">Boxing</h3><span class="difficulty intermediate">Intermediate</span></div><div class="d-flex gap-3 my-2"><span><i class="bi bi-clock gold-text"></i> 60 min</span><span><i class="bi bi-people gold-text"></i> Max 10</span></div><p>Channel your power in our exclusive boxing studio. Led by championship trainers, this class combines technique, footwork, and heavy bag work. Develop coordination, relieve stress, build lean muscle, and improve cardiovascular endurance.</p><a href="schedule.html" class="btn btn-outline-gold w-100 mt-3">Book This Class →</a></div></div></div><div class="col-lg-4 col-md-6"><div class="class-card"><img src="https://placehold.co/600x400/1a0f2e/E8B4B8?text=CARDIO" class="class-img"><div class="p-4"><div class="d-flex justify-content-between"><h3 class="h4">Cardio</h3><span class="difficulty beginner">Beginner</span></div><div class="d-flex gap-3 my-2"><span><i class="bi bi-clock gold-text"></i> 45 min</span><span><i class="bi bi-people gold-text"></i> Max 20</span></div><p>Elevate your heart rate in our state-of-the-art cardio studio. This dynamic class utilizes premium equipment including Woodway treadmills and assault bikes. Designed to improve cardiovascular endurance, burn calories, and boost energy levels.</p><a href="schedule.html" class="btn btn-outline-gold w-100 mt-3">Book This Class →</a></div></div></div><div class="col-lg-4 col-md-6"><div class="class-card"><img src="https://placehold.co/600x400/1a0f2e/E8B4B8?text=FUNCTIONAL" class="class-img"><div class="p-4"><div class="d-flex justify-content-between"><h3 class="h4">Functional Fitness</h3><span class="difficulty beginner">Beginner</span></div><div class="d-flex gap-3 my-2"><span><i class="bi bi-clock gold-text"></i> 50 min</span><span><i class="bi bi-people gold-text"></i> Max 15</span></div><p>Train for real-life movement. This class emphasizes mobility, stability, and practical strength using kettlebells, resistance bands, suspension trainers, and medicine balls. Perfect for all fitness levels seeking improved daily performance and injury prevention.</p><a href="schedule.html" class="btn btn-outline-gold w-100 mt-3">Book This Class →</a></div></div></div></div></div></section>
+
+<footer class="pt-5 pb-4 bg-black border-top text-center" style="border-color:var(--gold)!important"><div class="container"><div class="row"><div class="col-md-4"><a class="navbar-brand" href="index.html"><span class="gold-text">APEX</span> Atelier</a><p class="text-white-50 small mt-2">Elite fitness & wellness sanctuary.</p></div><div class="col-md-4"><h5>Quick Links</h5><ul class="list-unstyled"><li><a href="about.html" class="footer-link">About</a></li><li><a href="memberships.html" class="footer-link">Memberships</a></li><li><a href="classes.html" class="footer-link">Classes</a></li></ul></div><div class="col-md-4"><h5>Connect</h5><div class="social-icons"><a href="#" class="text-gold me-2"><i class="bi bi-instagram"></i></a><a href="#" class="text-gold me-2"><i class="bi bi-facebook"></i></a><a href="#" class="text-gold"><i class="bi bi-twitter"></i></a></div></div></div><hr class="my-3" style="background:var(--gold);opacity:0.3"><small>© 2025 APEX ATELIER — All rights reserved.</small></div></footer>
+
+<div class="font-style-btn" id="fontStyleBtn"><i class="bi bi-type"></i><span>Change Font</span></div>
+<div class="font-dropdown" id="fontDropdown"><div class="font-option" data-font="playfair"><i class="bi bi-text-paragraph"></i><span class="font-preview preview-playfair">Playfair Display</span></div><div class="font-option" data-font="montserrat"><i class="bi bi-text-paragraph"></i><span class="font-preview preview-montserrat">Montserrat</span></div><div class="font-option" data-font="space"><i class="bi bi-text-paragraph"></i><span class="font-preview preview-space">Space Grotesk</span></div><div class="font-option" data-font="cormorant"><i class="bi bi-text-paragraph"></i><span class="font-preview preview-cormorant">Cormorant</span></div><div class="font-option" data-font="dm"><i class="bi bi-text-paragraph"></i><span class="font-preview preview-dm">DM Sans</span></div><div class="font-option" data-font="raleway"><i class="bi bi-text-paragraph"></i><span class="font-preview preview-raleway">Raleway</span></div><div class="font-option" data-font="marcellus"><i class="bi bi-text-paragraph"></i><span class="font-preview preview-marcellus">Marcellus</span></div><div class="font-option" data-font="lato"><i class="bi bi-text-paragraph"></i><span class="font-preview preview-lato">Lato</span></div><div class="font-option" data-font="inter"><i class="bi bi-text-paragraph"></i><span class="font-preview preview-inter">Inter</span></div></div>
+<div class="random-style-btn" id="randomStyleBtn"><i class="bi bi-shuffle"></i><span>Random Style</span></div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<script src="fix-buttons.js"></script>
+<script>
+const fontOptions={playfair:{heading:"'Playfair Display', serif",body:"'Playfair Display', serif"},montserrat:{heading:"'Montserrat', sans-serif",body:"'Montserrat', sans-serif"},space:{heading:"'Space Grotesk', sans-serif",body:"'Space Grotesk', sans-serif"},cormorant:{heading:"'Cormorant Garamond', serif",body:"'Cormorant Garamond', serif"},dm:{heading:"'DM Sans', sans-serif",body:"'DM Sans', sans-serif"},raleway:{heading:"'Raleway', sans-serif",body:"'Raleway', sans-serif"},marcellus:{heading:"'Marcellus', serif",body:"'Marcellus', serif"},lato:{heading:"'Lato', sans-serif",body:"'Lato', sans-serif"},inter:{heading:"'Inter', sans-serif",body:"'Inter', sans-serif"}};
+function applyFont(f){let font=fontOptions[f];document.querySelectorAll('h1,h2,h3,h4,.navbar-brand,.display-1,.display-2,.display-5,.stat-number').forEach(el=>el.style.fontFamily=font.heading);document.body.style.fontFamily=font.body;localStorage.setItem('apex-font',f);let n=document.createElement('div');n.style.cssText=`position:fixed;top:100px;right:30px;background:var(--gold);color:#1a0f2e;padding:12px 24px;border-radius:50px;z-index:10000;font-weight:600;font-size:14px;animation:slideInRight 0.3s ease`;n.innerHTML=`✨ Font changed to ${f.charAt(0).toUpperCase()+f.slice(1)} ✨`;document.body.appendChild(n);setTimeout(()=>n.remove(),2000);}
+document.getElementById('fontStyleBtn')?.addEventListener('click',e=>{e.stopPropagation();document.getElementById('fontDropdown').classList.toggle('show');});
+document.addEventListener('click',e=>{let btn=document.getElementById('fontStyleBtn'),drop=document.getElementById('fontDropdown');if(!btn?.contains(e.target)&&!drop?.contains(e.target))drop?.classList.remove('show');});
+document.querySelectorAll('.font-option').forEach(opt=>{opt.addEventListener('click',()=>{applyFont(opt.getAttribute('data-font'));document.getElementById('fontDropdown').classList.remove('show');});});
+let savedFont=localStorage.getItem('apex-font');if(savedFont&&fontOptions[savedFont])applyFont(savedFont);
+const styleThemes=[{name:'Royal Purple',gold:'#C8A2C8',goldLight:'#E8D0E8',goldDark:'#A882A8',bg:'#1a0f2e',text:'#f0e6ff'},{name:'Emerald Green',gold:'#C8E8C8',goldLight:'#E0F5E0',goldDark:'#A8D0A8',bg:'#0f2e1a',text:'#e6fff0'},{name:'Midnight Blue',gold:'#C8D8E8',goldLight:'#E0ECF5',goldDark:'#A8C0D8',bg:'#0f1a2e',text:'#e6f0ff'},{name:'Rose Gold',gold:'#E8B4B8',goldLight:'#F3D5D6',goldDark:'#C4848A',bg:'#2e1a2e',text:'#ffe6f0'},{name:'Champagne',gold:'#F5E6D3',goldLight:'#FFF5EA',goldDark:'#E0CDB0',bg:'#2e2e1a',text:'#fff0e6'}];
+function applyRandomStyle(){let t=styleThemes[Math.floor(Math.random()*styleThemes.length)];document.documentElement.style.setProperty('--gold',t.gold);document.documentElement.style.setProperty('--gold-light',t.goldLight);document.documentElement.style.setProperty('--gold-dark',t.goldDark);document.body.style.background=`linear-gradient(135deg, ${t.bg} 0%, ${t.bg} 100%)`;document.body.style.color=t.text;let n=document.createElement('div');n.style.cssText=`position:fixed;bottom:100px;left:30px;background:${t.gold};color:${t.bg};padding:12px 24px;border-radius:50px;z-index:10000;font-weight:600;font-size:14px;animation:slideInRight 0.3s ease`;n.innerHTML=`✨ Style changed to ${t.name} ✨`;document.body.appendChild(n);setTimeout(()=>n.remove(),2000);}
+document.getElementById('randomStyleBtn')?.addEventListener('click',applyRandomStyle);
+if(!document.querySelector('#notificationKeyframe')){let s=document.createElement('style');s.id='notificationKeyframe';s.textContent='@keyframes slideInRight{from{transform:translateX(100px);opacity:0}to{transform:translateX(0);opacity:1}}';document.head.appendChild(s);}
+</script>
+<script src="slide-sidebar.js"></script>
+<script src="animations.js"></script>
+<script src="auto-images.js"></script>
+<script src="fix-buttons.js"></script>
+</body>
+</html>
